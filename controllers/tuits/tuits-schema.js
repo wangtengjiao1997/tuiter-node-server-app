@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const schema = mongoose.Schema({
    topic: String,
    userName: String,
+   handle:String,
    title: String,
    time: String,
    image: String,
