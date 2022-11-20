@@ -1,13 +1,25 @@
 import people from './users.js';
 let users = people;
 
+
+
 const UserController = (app) => {
     app.get('/api/users', findUsers);
     app.get('/api/users/:uid', findUserById);
     app.post('/api/users', createUser);
     app.delete('/api/users/:uid', deleteUser);
     app.put('/api/users/:uid', updateUser);
+
+    app.put("/api/module/:moduleId",  (req, res) => {
+        var mid = req.params.moduleId;
+        var module = req.body;
+        var newTitle = module.title;
+        moduleService.updateModuleTitle(mid, newTitle)
+            .then(status => res.send(status))
+    })
 }
+
+
 const findUserById = (req, res) => {
     const userId = req.params.uid;
     const user = users.find(u => u._id === userId);
